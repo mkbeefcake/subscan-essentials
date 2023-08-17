@@ -201,6 +201,8 @@ func (d *Dao) DbBegin() *GormDB {
 // private funcs
 func newDb() (db *gorm.DB) {
 	var err error
+	log.Printf("Database DSN: %s", configs.Boot.Database.DSN)
+
 	if os.Getenv("TASK_MOD") == "true" {
 		db, err = gorm.Open("mysql", configs.Boot.Database.DSN)
 	} else if os.Getenv("TEST_MOD") == "true" {

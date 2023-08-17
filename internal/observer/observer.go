@@ -19,11 +19,13 @@ var (
 )
 
 func Run(dt string) {
+	log.Printf("Run: dt = %s", dt)
 	srv = service.New()
 	defer srv.Close()
 	for {
 		switch dt {
 		case "substrate":
+			log.Printf("Observer: %s", util.WSEndPoint)
 			subscribeConn := &recws.RecConn{KeepAliveTimeout: 10 * time.Second, WriteTimeout: time.Second * 5, ReadTimeout: 10 * time.Second}
 			subscribeConn.Dial(util.WSEndPoint, nil)
 			go srv.Subscribe(subscribeConn, stop)

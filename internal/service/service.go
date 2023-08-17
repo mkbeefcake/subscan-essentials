@@ -22,6 +22,7 @@ type Service struct {
 
 // New  a service and return.
 func New() (s *Service) {
+	log.Printf("WSEndPoint: %s", util.WSEndPoint)
 	websocket.SetEndpoint(util.WSEndPoint)
 	d, dbStorage := dao.New()
 	s = &Service{dao: d}
@@ -65,7 +66,8 @@ func (s *Service) initSubRuntimeLatest() {
 		metadata.Latest(&metadata.RuntimeRaw{Spec: 1, Raw: raw})
 		return
 	}
-	panic("Can not find chain metadata, please check network")
+	// panic("Can not find chain metadata, please check network")
+	log.Printf("Can not find chain metadata, please check network")
 }
 
 // read custom registry from local or remote

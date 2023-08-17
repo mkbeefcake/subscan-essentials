@@ -31,6 +31,7 @@ func (s *Service) Subscribe(conn ws.WsConn, stop chan struct{}) {
 			if !conn.IsConnected() {
 				continue
 			}
+			log.Printf("Connected to wss....")
 			_, message, err := conn.ReadMessage()
 			if err != nil {
 				log.Printf("read: %s", err)
